@@ -44,7 +44,6 @@ pipeline {
        }
       }
    
-    }
     post { 
         success {
       hangoutsNotify message: "Chris Gallivan:::SUCCESS",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true    
