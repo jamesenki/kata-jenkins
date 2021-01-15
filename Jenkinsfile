@@ -9,7 +9,23 @@ def loadValuesYaml(x){
 
 pipeline {
   environment {
-        
+  //credentials
+	    dockerHubCredential = loadValuesYaml('dockerHubCredential')
+            awsCredential = loadValuesYaml('awsCredential')
+	    
+	    //docker config
+	    imageName = loadValuesYaml('imageName')
+	    slackChannel = loadValuesYaml('slackChannel')
+	    dockerImage = ''
+	    
+	    //s3 config
+            backendFile = loadValuesYaml('backendFile')
+            backendPath = loadValuesYaml('backendPath')
+	    
+	    //additional external feedback
+	    successAction = loadValuesYaml('successAction')
+	    failureAction = loadValuesYaml('failureAction')  
+	    app_url = ''      
 	    
    }
     agent any
@@ -19,30 +35,7 @@ pipeline {
                 echo 'Building Node app...'
                   }
         }
-        stage('Build Docker Image') {
-             steps {
-                script{
-                    echo 'Building Docker image...'
-                
-                }
-             }
-        }
-        stage('Deploy to Docker Hub') {
-            steps {
-               script {
-                    echo 'Publishing Image to Docker Hub...'
-                
-                    }
-                }
-             }
-        }
-        stage('Cleanup Local Image') {
-            steps {
-               script {
-                    }
-         }
-       }
-      }
+  }
    
     post { 
         success {
