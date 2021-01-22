@@ -33,6 +33,7 @@ pipeline {
         stage('Build Node App') {
             steps {
                 echo 'Building Node app...'
+		     sh 'npm install-test'
                   }
         }
   }
