@@ -33,11 +33,34 @@ pipeline {
         stage('Build Node App') {
             steps {
                 echo 'Building Node app...'
-		     sh 'npm install-test'
-                  }
+		            sh 'npm install-test'
+            }
         }
-  }
-   
+        stage('Build Docker Image') {
+             steps {
+                script{
+                    echo 'Building Docker image...'
+                    docker.withRegistry( '', dockerHubCredential ) {
+          		          dockerImage = docker.build imageName
+		                }
+                }
+             }
+        }
+        stage('Deploy to Docker Hub') {
+            steps {
+               script {
+                    echo 'Publishing Image to Docker Hub...'
+                    docker.withRegistry( '', dockerHubCredential ) {
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')   
+                    }
+                    echo 'Removing Image...'
+                    sh "docker rmi $imageName:$BUILD_NUMBER"
+                    sh "docker rmi $imageName:latest"                 }
+                }
+            }
+        }
+    }
     post { 
         success {
       hangoutsNotify message: "Chris Gallivan:::SUCCESS",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true    
