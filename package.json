@@ -1,17 +1,21 @@
 {
   "name": "kata-jenkins",
   "version": "1.0.0",
-  "description": "kata friday repo",
+  "description": "technical exercise",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
-   "repository": {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/chrisgallivan/kata-jenkins.git"
   },
-  "author": "",
+  "author": "chrisgallivan",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisgallivan/kata-jenkins/issues"
+  },
+  "homepage": "https://github.com/chrisgallivan/kata-jenkins#readme",
   "dependencies": {
     "jest": "^26.6.3",
     "supertest": "^6.0.1",
