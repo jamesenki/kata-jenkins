@@ -62,12 +62,12 @@ pipeline {
        }
     post { 
         success {
-      hangoutsNotify message: "Chris Gallivan:::SUCCESS",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true    
+      hangoutsNotify message: "Chris Gallivan:::SUCCESS - node:12-alpine",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true    
 		
         }
     
         failure {
-	  	hangoutsNotify message: "Chris Gallivan:::FAILURE",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true
+	  	hangoutsNotify message: "Chris Gallivan:::FAILURE - node:12-alpine",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true
         }
    }
 }
