@@ -1,0 +1,16 @@
+{
+  "name": "kata-jenkins",
+  "version": "1.0.0",
+  "description": "kata friday repo",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^26.6.3",
+    "supertest": "^6.0.1",
+    "express": "^4.17.1"
+  }
+}
