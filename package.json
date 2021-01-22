@@ -6,6 +6,10 @@
   "scripts": {
     "test": "jest"
   },
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisgallivan/kata-jenkins.git"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
