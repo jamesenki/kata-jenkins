@@ -1,20 +1,26 @@
-#base it on the public node12 image
-FROM node:12-alpine
+#define build-test stage - docker multistage pipeline
+
+FROM node:12 as build-test          
 
 #create app directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 #install dependencies
-COPY package*.json ./
-
-#install npm
-RUN npm install
-
-#bundle app source and copy to image
 COPY . .
 
-#expose port 3000 on container
+RUN npm install-test
+    
+# run lean image
+FROM node:12-alpine as run    
+
+#create app directory
+WORKDIR /app
+
+#install dependencies
+COPY . .
+
+RUN npm install
+
 EXPOSE 3000
 
-#start the app
 CMD ["node","index.js"]
