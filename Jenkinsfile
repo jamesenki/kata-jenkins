@@ -3,37 +3,37 @@ def COLOR_MAP = [
     'FAILURE': 'danger',
 ]
 def loadValuesYaml(x){
-  def valuesYaml = readYaml (file: './pipeline.yml')
+  def valuesYaml = readYaml (file: 'pipeline.yml')
   return valuesYaml[x];
 }
 
 pipeline {
   environment {
   //credentials
-	    dockerHubCredential = loadValuesYaml('dockerHubCredential')
+        dockerHubCredential = loadValuesYaml('dockerHubCredential')
             awsCredential = loadValuesYaml('awsCredential')
-	    
-	    //docker config
-	    imageName = loadValuesYaml('imageName')
-	    slackChannel = loadValuesYaml('slackChannel')
-	    dockerImage = ''
-	    
-	    //s3 config
+        
+        //docker config
+        imageName = loadValuesYaml('imageName')
+        slackChannel = loadValuesYaml('slackChannel')
+        dockerImage = ''
+        
+        //s3 config
             backendFile = loadValuesYaml('backendFile')
             backendPath = loadValuesYaml('backendPath')
-	    
-	    //additional external feedback
-	    successAction = loadValuesYaml('successAction')
-	    failureAction = loadValuesYaml('failureAction')  
-	    app_url = ''      
-	    
+        
+        //additional external feedback
+        successAction = loadValuesYaml('successAction')
+        failureAction = loadValuesYaml('failureAction')  
+        app_url = ''      
+        
    }
     agent any
     stages {
   //      stage('Build Node App') {
   //          steps {
   //              echo 'Building Node app...'
-  //		    sh 'npm install-test --prefer-offline &> /dev/null'
+  //            sh 'npm install-test --prefer-offline &> /dev/null'
   //          }
   //      }
         stage('Build Docker Image') {
@@ -41,8 +41,8 @@ pipeline {
                 script{
                     echo 'Building Docker image...'
                     docker.withRegistry( '', dockerHubCredential ) {
-          		          dockerImage = docker.build imageName
-		                }
+                            dockerImage = docker.build imageName
+                        }
                 }
              }
         }
@@ -63,11 +63,11 @@ pipeline {
     post { 
         success {
       hangoutsNotify message: "Chris Gallivan:::SUCCESS - node:12-alpine",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true    
-		
+        
         }
     
         failure {
-	  	hangoutsNotify message: "Chris Gallivan:::FAILURE - node:12-alpine",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true
+          hangoutsNotify message: "Chris Gallivan:::FAILURE - node:12-alpine",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true
         }
    }
 }
