@@ -67,7 +67,7 @@ pipeline {
         }
     
         failure {
-	  	hangoutsNotify message: "CJames Simon:::FAILURE - node:12-alpine",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true
+	  	hangoutsNotify message: "Cames Simon:::FAILURE - node:12-alpine",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true
         }
    }
 }
