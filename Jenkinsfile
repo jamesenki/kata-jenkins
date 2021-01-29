@@ -26,12 +26,12 @@ pipeline {
    }
     agent any
     stages {
-            stage('Build Node App') {
-                steps {
-                    echo 'Building Node app...'
-		    sh 'npm install-test'
-  		 }
-           }
+           // stage('Build Node App') {
+             //   steps {
+               //     echo 'Building Node app...'
+		 //   sh 'npm install-test'
+  		 //}
+           //}
 stage('Build Docker Image') {
              steps {
                 script{
