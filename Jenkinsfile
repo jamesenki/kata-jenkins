@@ -32,6 +32,17 @@ pipeline {
 		    sh 'npm install-test'
   		 }
            }
+stage('Build Docker Image') {
+             steps {
+                script{
+                    echo 'Building Docker image...'
+                    docker.withRegistry( '', dockerHubCredential ) {
+          		          dockerImage = docker.build imageName
+		                }
+                }
+             }
+        }	    
+	    
        }
     post { 
             success {
