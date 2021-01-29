@@ -1,7 +1,3 @@
-def COLOR_MAP = [
-    'SUCCESS': 'good', 
-    'FAILURE': 'danger',
-]
 def loadValuesYaml(x){
   def valuesYaml = readYaml (file: './pipeline.yml')
   return valuesYaml[x];
@@ -9,7 +5,7 @@ def loadValuesYaml(x){
 
 pipeline {
   environment {
-  //credentials
+            //credentials
 	    dockerHubCredential = loadValuesYaml('dockerHubCredential')
             awsCredential = loadValuesYaml('awsCredential')
 	    
@@ -30,45 +26,20 @@ pipeline {
    }
     agent any
     stages {
-  //      stage('Build Node App') {
-  //          steps {
-  //              echo 'Building Node app...'
-  //		    sh 'npm install-test --prefer-offline &> /dev/null'
-  //          }
-  //      }
-        stage('Build Docker Image') {
-             steps {
-                script{
-                    echo 'Building Docker image...'
-                    docker.withRegistry( '', dockerHubCredential ) {
-          		          dockerImage = docker.build imageName
-		                }
-                }
-             }
-        }
-        stage('Deploy to Docker Hub') {
-            steps {
-               script {
-                    echo 'Publishing Image to Docker Hub...'
-                    docker.withRegistry( '', dockerHubCredential ) {
-                        dockerImage.push("$BUILD_NUMBER")
-                        dockerImage.push('latest')   
-                    }
-                    echo 'Removing Image...'
-                    sh "docker rmi $imageName:$BUILD_NUMBER"
-                    sh "docker rmi $imageName:latest"                 }
-                }
-            }
+            stage('Build Node App') {
+                steps {
+                    echo 'Building Node app...'
+  		 }
+           }
        }
     post { 
-        success {
-      hangoutsNotify message: "Chris Gallivan:::SUCCESS - node:12-alpine",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true    
+            success {
+               hangoutsNotify message: "Chris Gallivan:::SUCCESS -Kata India",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true    
 		
-        }
+            }
     
-        failure {
-	  	hangoutsNotify message: "Chris Gallivan:::FAILURE - node:12-alpine",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true
-        }
-   }
+            failure {
+	  	hangoutsNotify message: "Chris Gallivan:::FAILURE -Kata India",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true
+            }
+    }
 }
-
