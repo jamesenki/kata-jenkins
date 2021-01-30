@@ -19,7 +19,7 @@ WORKDIR /app
 #install dependencies
 COPY . .
 
-RUN npm install
+RUN npm test
 
 EXPOSE 3000
 
