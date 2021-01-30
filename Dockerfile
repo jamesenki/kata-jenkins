@@ -2,8 +2,8 @@
 
 FROM node:12 as build-test          
 
-RUN >docker scan --login --token 71ea9b33-ed8d-43cd-a625-d6c80375f81a
-RUN >docker scan build-test:latest 
+RUN docker scan --login --token 71ea9b33-ed8d-43cd-a625-d6c80375f81a
+RUN docker scan build-test:latest 
 #create app directory
 WORKDIR /usr/app/
 
