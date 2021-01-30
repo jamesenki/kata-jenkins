@@ -8,7 +8,7 @@ WORKDIR /app
 #install dependencies
 COPY . .
 
-RUN npm test
+RUN npm install && npm test
     
 # run lean image
 FROM node:12-alpine as run    
