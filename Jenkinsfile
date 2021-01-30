@@ -1,4 +1,10 @@
+def aws_secrets = [
+  [path: 'secret/jenkins/aws', engineVersion: 2, secretValues: [
+     [envVar: 'DEPLOYMENT_USERNAME', vaultKey: 'aws_access_id'],
+     [envVar: 'DEPLOYMENT_PASSWORD', vaultKey: 'aws_secret_key']
+    ]],
 
+]
 def COLOR_MAP = [
     'SUCCESS': 'good', 
     'FAILURE': 'danger',

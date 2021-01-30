@@ -3,18 +3,18 @@
 FROM node:12 as build-test          
 
 #create app directory
-WORKDIR /usr/app/
+WORKDIR /usr/app
 
 #install dependencies
 COPY . .
 
-RUN npm install-test
+RUN npm install && npm test
     
 # run lean image
 FROM node:12-alpine as run    
 
 #create app directory
-WORKDIR /usr/app/
+WORKDIR /usr/app
 
 #install dependencies
 COPY . .
