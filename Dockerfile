@@ -3,7 +3,7 @@
 FROM node:12 as build-test          
 
 #create app directory
-WORKDIR /app
+WORKDIR /usr/app/
 
 #install dependencies
 COPY . .
@@ -14,12 +14,12 @@ RUN npm install && npm test
 FROM node:12-alpine as run    
 
 #create app directory
-WORKDIR /app
+WORKDIR /usr/app/
 
 #install dependencies
 COPY . .
 
-RUN npm test
+RUN npm install && npm test
 
 EXPOSE 3000
 
