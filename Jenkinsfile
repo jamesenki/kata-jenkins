@@ -130,7 +130,7 @@ pipeline {
     }
     post { 
         success {
-      hangoutsNotify message: "James Simon:::SUCCESS - node:12-alpine",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true    
+      hangoutsNotify message: "James Simon:::SUCCESS  With a Woking Docker File- node:12-alpine",token: "8TAhr5dP97wKtVlaaWya6Hn5l", threadByJob: true    
         
         }
     
